@@ -1,0 +1,23 @@
+name: Deploy HTML Website
+
+on:
+  push:
+    branches:
+      - main  # Trigger the action on push to the 'main' branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Upload Files to Server
+        run: |
+          rsync -avz --delete --exclude '.git/' ./ root@18.143.76.240:/www/wwwroot/
