@@ -20,4 +20,4 @@ jobs:
 
       - name: Upload Files to Server
         run: |
-          rsync -avz --delete --exclude '.git/' ./ root@18.143.76.240:/www/wwwroot/
+         rsync -avz --delete --exclude '.git/' ./ root@18.143.76.240:/www/wwwroot/samaraaruna.run.place
